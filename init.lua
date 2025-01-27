@@ -30,8 +30,11 @@ require("lazy").setup({
         "hrsh7th/nvim-cmp",
         ["dependencies"] = {"hrsh7th/cmp-nvim-lsp"}
     },
-    {"mfussenegger/nvim-lint"}
+    {"mfussenegger/nvim-lint"},
+    {"williamboman/mason.nvim"}
 })
+
+require("mason").setup()
 
 local cmp = require("cmp")
 local lspConfig = require("lspconfig")
