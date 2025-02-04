@@ -6,6 +6,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.autoindent = true
 vim.opt.scrolloff = 10
+vim.g.zig_fmt_autosave = 0
 
 -----------------------------------------------------------------------------
 
@@ -28,8 +29,9 @@ require("lazy").setup({
     {"neovim/nvim-lspconfig"},
     {
         "hrsh7th/nvim-cmp",
-        ["dependencies"] = {"hrsh7th/cmp-nvim-lsp"}
+        ["dependencies"] = {"hrsh7th/cmp-nvim-lsp"},
     },
+        {"dcampos/nvim-snippy"},
     {"mfussenegger/nvim-lint"},
     {"williamboman/mason.nvim"}
 })
@@ -44,9 +46,9 @@ local lint = require("lint")
 
 lspConfig.lua_ls.setup({
     ["settings"] = {
-        ["Lua"] = {
+                ["Lua"] = {
             ["runtime"] = {
-                ["version"] = "LuaJIT",
+                        ["version"] = "LuaJIT",
             },
             ["diagnostics"] = {
                 ["globals"] = {"vim"},
@@ -62,19 +64,17 @@ lspConfig.lua_ls.setup({
     }
 })
 
-lspConfig.ts_ls.setup({
-    ["settings"] = {
-        ["documentFormatting"] = false
-    }
-})
-
-lspConfig.zls.setup({
-    ["settings"] = {}
-})
+lspConfig.ts_ls.setup({})
+lspConfig.zls.setup({})
 
 -----------------------------------------------------------------------------
 
 cmp.setup({
+        ["snippet"] = {
+                ["expand"] = function(args)
+                        require("snippy").expand_snippet(args.body)
+                end
+        },
     ["mapping"] = cmp.mapping.preset.insert({
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<CR>"] = cmp.mapping.confirm({["select"] = true})
