@@ -6,6 +6,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.autoindent = true
 vim.opt.scrolloff = 10
+vim.opt.clipboard = "unnamedplus"
 vim.g.zig_fmt_autosave = 0
 
 -----------------------------------------------------------------------------
