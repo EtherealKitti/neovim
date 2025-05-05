@@ -72,9 +72,9 @@ lspConfig.zls.setup({})
 
 cmp.setup({
     ["snippet"] = {
-            ["expand"] = function(args)
-                    require("snippy").expand_snippet(args.body)
-            end
+        ["expand"] = function(args)
+                require("snippy").expand_snippet(args.body)
+        end
     },
     ["mapping"] = cmp.mapping.preset.insert({
         ["<C-Space>"] = cmp.mapping.complete(),
