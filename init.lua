@@ -108,7 +108,11 @@ lint.linters.zig = {
 
 vim.api.nvim_create_autocmd(
     {"BufEnter","TextChanged"},
-    {["callback"] = lint.try_lint}
+    {
+        ["callback"] = function()
+            lint.try_lint()
+        end
+    }
 )
 
 -----------------------------------------------------------------------------
